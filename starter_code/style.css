@@ -17,3 +17,13 @@ body button {
   border-radius: 5px;
   margin-bottom: 20px;
 }
+
+canvas{
+    /* background-image: url(images/bg.png); */
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:-1;
+}
+
+
