@@ -3,42 +3,95 @@ window.onload = function() {
     startGame();
   };
 
-  // let canvas = document.getElementById("game-board"),
-  //   context = canvas.getContext("2d");
+  
+  function startGame() {
 
-  // make_base();
 
-  // function make_base() {
-  //   base_image = new Image();
-  //   base_image.src = "images/bg.png";
-  //   base_image.onload = function() {
-  //     context.drawImage(base_image, 0, 0);
-  //   };
-  // }
-
-  var canvas = document.getElementById('gametime');
-  var context = canvas.getContext('2d');
-  var image = new Image();
-
-  image.onload = function() {
-    var x = 0;
-    var width = image.width;
-    var min = 0-width;
-    var step = 1;
-
-    var loop = function() {
-      context.drawImage(image, x, 0);
-      context.drawImage(image, x + width, 0);
-      x -= step;
-      if (x < min) {
-        x = 0;
+    let faby = {
+      x: 25,
+      y: 25,
+      width: 10,
+      height: 10,
+      speedX: 10,
+      speedY: 10,
+      gravity: 10,
+      gravitySpeed: 1,
+      update: () => {
+        
+      },
+      newPos: () => {
+        update();
       }
+  
+    }
+
+    function draw(faby) {
+      let img = new Image();
+      img.onload = function() {
+        ctx.drawImage(img, faby.x, faby.y, 50, 50);
+      }
+      img.src = "images/flappy.png";
+    }
+    
+    
+    document.onkeydown = function(e) {
+      switch (e.keyCode) {
+        case 32: faby.gravity = -3;    console.log('up',    faby); break;
+    
+      }
+      updateCanvas();
+    }
+
+
+
+
+    let img = new Image();
+    img.src = 'images/bg.png';
+    
+    let canvas = document.getElementById('gametime');
+    let ctx = canvas.getContext('2d');
+    
+    let backgroundImage = {
+      img: img,
+      x: 0,
+      speed: -1,
+    
+      move: function() {
+        this.x += this.speed;
+        this.x %= canvas.width;
+      },
+    
+      draw: function() {
+        ctx.drawImage(this.img, this.x, 0);
+        if (this.speed < 0) {
+          ctx.drawImage(this.img, this.x + canvas.width, 0);
+        } else {
+          ctx.drawImage(this.img, this.x - this.img.width, 0);
+        }
+      },
     };
-    setInterval(loop, 1000 / 60);
-  };
+    
+    function updateCanvas() {
+      backgroundImage.move();
+    
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      backgroundImage.draw();
+    
+      requestAnimationFrame(updateCanvas);
 
-  image.src = 'images/bg.png';
+      draw(faby)
+    }
+    
+    // start calling updateCanvas once the image is loaded
+    img.onload = updateCanvas;
+
+  }
 
 
-  function startGame() {}
+
+
+
+
+
+
 };
