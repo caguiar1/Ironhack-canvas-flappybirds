@@ -1,12 +1,16 @@
+let time;
+
+
 window.onload = function() {
   document.getElementById("start-button").onclick = function() {
     startGame();
   };
-
+  
   
   function startGame() {
 
-
+    
+    
     let faby = {
       x: 25,
       y: 25,
@@ -14,16 +18,18 @@ window.onload = function() {
       height: 10,
       speedX: 10,
       speedY: 10,
-      gravity: 10,
-      gravitySpeed: 1,
+      gravity: 0.05,
+      gravitySpeed: 0.5,
       update: () => {
         
       },
       newPos: () => {
         update();
       }
-  
+      
     }
+    
+    
 
     function draw(faby) {
       let img = new Image();
@@ -36,10 +42,22 @@ window.onload = function() {
     
     document.onkeydown = function(e) {
       switch (e.keyCode) {
-        case 32: faby.gravity = -3;    console.log('up',    faby); break;
+        case 32: faby.gravity = -3;    console.log('up',    faby);
+        console.log('SET GRAVITY')
+        
+        timeGravity();
+        break;
     
       }
-      updateCanvas();
+      function timeGravity(){
+        time = setTimeout(gravTimeReset, 50);
+      }
+      function gravTimeReset(){
+        faby.gravity = 0.05
+        console.log('RESET GRAVITY')
+      }
+
+      // updateCanvas();
     }
 
 

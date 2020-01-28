@@ -20,7 +20,7 @@ body button {
 
 canvas{
     /* background-image: url(images/bg.png); */
-
+  
     z-index:-1;
 }
 
