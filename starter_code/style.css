@@ -18,10 +18,13 @@ body button {
   margin-bottom: 20px;
 }
 
-canvas{
-    /* background-image: url(images/bg.png); */
-  
+#canvas{
+    position: fixed;
     z-index:-1;
+}
+
+#fabyCanvas{
+  z-index: 1;
 }
 
 
