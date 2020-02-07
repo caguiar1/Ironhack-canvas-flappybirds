@@ -123,13 +123,16 @@ function gravity(){
   faby.y -= -1;
 
   faby.draw();
+  
 
 }
     
 document.body.onkeyup = function(e){
   if(e.keyCode == 32){
-      faby.y += -100;
-      console.log("WORKING")
+      faby.y += -75;
+      console.log("Flapped");
+
+
   }
 }
 
