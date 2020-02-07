@@ -50,15 +50,20 @@ window.onload = function() {
     
 
     function draw(faby) {
+
+      
       let img2 = new Image();
       img2.onload = function() { 
-         fabyctx.drawImage(img2, faby.x, faby.y, 50, 50); 
+        fabyctx.drawImage(img2, faby.x, faby.y, 50, 50); 
       }
       img2.src = "images/flappy.png";
+      
     }
+    fabyctx.clearRect(0, 0, fabyCanvas.width, fabyCanvas.height);
 
     draw(faby);
     
+
     
     
     // ------------------------ SCROLLING IMAGE ------------------------ //
@@ -93,12 +98,13 @@ window.onload = function() {
       
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       backgroundImage.draw();
-      
-    
+
       requestAnimationFrame(updateCanvas);
+      
       
       draw(faby);
     }
+   
     
     // start calling updateCanvas once the image is loaded
     img.onload = updateCanvas;
@@ -112,7 +118,11 @@ setInterval(gravity, 5);
 
 function gravity(){
 
+  fabyctx.clearRect(0, 0, fabyCanvas.width, fabyCanvas.height);
+
   faby.y -= -1;
+
+  faby.draw();
 
 }
     
