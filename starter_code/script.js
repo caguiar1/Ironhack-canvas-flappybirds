@@ -93,6 +93,7 @@ window.onload = function() {
       
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       backgroundImage.draw();
+      
     
       requestAnimationFrame(updateCanvas);
       
@@ -115,7 +116,12 @@ function gravity(){
 
 }
     
-
+document.body.onkeyup = function(e){
+  if(e.keyCode == 32){
+      faby.y += -100;
+      console.log("WORKING")
+  }
+}
 
 
 
